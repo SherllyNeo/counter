@@ -36,12 +36,17 @@ int main(int argc, char *argv[])
         }
     }
     /* 
-     If count up is true, true is 1 and we want it to go from 0 to seconds, otherwise we want it to go from seconds to 0 
-     */
+       If count up is true, true is 1 and we want it to go from 0 to seconds, otherwise we want it to go from seconds to 0 
+       */
     int init = count_up ? 0 : seconds;
     int end = count_up ? seconds : 0;
     int jump = count_up ? 1 : -1;
-    printf("counting from %d to %d\n",init,end);
+    if (end == INT_MAX) {
+        printf("counting from %d to infinity\n",init);
+    }
+    else {
+        printf("counting from %d to %d\n",init,end);
+    }
     for (int k = init; (jump*k)<end; k += jump) {
         printf("\r          ");
         printf("\r%d",k + count_up);
